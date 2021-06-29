@@ -37,7 +37,7 @@ pipeline {
                         string(name: "AES", value: NEW_AES),
                         string(name: "IV", value: NEW_IV)
                     ];
-                    build(job: "CUSTOMER_SUCCESS/job/Rivendell/job/dev/Config-Repo-Key", parameters: parameters)
+                    build(job: "CUSTOMER_SUCCESS/Rivendell/dev/Config-Repo-Key", parameters: parameters)
                 }
             }
         }
@@ -54,7 +54,6 @@ pipeline {
 
 def testAndGetKey(String keyType) {
     def out = sh(script: "${gradle} test --tests com.axel.gatewaypoc.utils.GenerateDefaultPairKeysTest | grep '${keyType}' ", returnStdout: true)
-    println "Saída = ${out}" 
     def generatedKey = out.trim().split(" ")[1]
     println "${keyType} = ${generatedKey}"
     return generatedKey
