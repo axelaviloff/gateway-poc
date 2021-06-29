@@ -17,6 +17,12 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
+apply plugin: 'java'
+
 test {
 	useJUnitPlatform()
+	testLogging {
+        outputs.upToDateWhen {false}
+        showStandardStreams = true
+    }
 }

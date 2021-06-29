@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.axel.gatewaypoc.utils.GenerateDefaultPairKeysTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-06-29T17:06:40" hostname="CTNLDELLGFZVJB3" time="0.018">
+  <properties/>
+  <testcase name="generateTest()" classname="com.axel.gatewaypoc.utils.GenerateDefaultPairKeysTest" time="0.018"/>
+  <system-out><![CDATA[AES b75c9f29-7f76-4ec6-8f22-e89accc76bfa
+IV e268c8c8-3b39-43fb-925e-2ae3cfd64528
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
