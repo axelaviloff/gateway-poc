@@ -49,7 +49,7 @@ def testAndGetKey(String keyType) {
     def out2 = sh(script: "${gradle} test --tests com.axel.gatewaypoc.utils.GenerateDefaultPairKeysTest | grep -E 'AES|IV'", returnStdout: true)
     println "Saída SEM SPLIT ${out2}"
     def out3 = out2.trim().replaceAll("\\s+", " ")
-    println "replaceAll = ${out3}
+    println "replaceAll = ${out3}"
     def out3 = out3.split(" ")
     println "Saída COM SPLIT ${out3}"
     
