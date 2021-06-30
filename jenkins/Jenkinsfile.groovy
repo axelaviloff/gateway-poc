@@ -56,7 +56,7 @@ pipeline {
 
 def testAndGetKey() {
     def out = sh(script: "${gradle} test --tests com.axel.gatewaypoc.utils.GenerateDefaultPairKeysTest | grep -E 'AES|IV'", returnStdout: true)
-    out = out2.trim().replaceAll("\\s+", " ").split(" ")
+    out = out.trim().replaceAll("\\s+", " ").split(" ")
     println "SAÍDA TESTE ${out3}"
     NEW_AES = out[1]
     NEW_IV = out[3]
