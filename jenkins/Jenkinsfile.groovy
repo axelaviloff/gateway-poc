@@ -16,12 +16,22 @@ pipeline {
         stage("Generate Keys") {
             steps {
                 script {
-                    NEW_AES = testAndGetKey("AES")
-                    NEW_IV = testAndGetKey("IV")
+                    testAndGetKey()
 
                 }
             }
         }
+        
+        stage("Print Keys") {
+            steps {
+                script {
+                    println "AES = ${NEW_AES}"
+                    println "IV = ${NEW_IV}"
+
+                }
+            }
+        }
+        
         stage("Call config-repo-poc job") {
             steps {
                 script {
@@ -44,16 +54,10 @@ pipeline {
     }
 }
 
-def testAndGetKey(String keyType) {
-    def out = sh(script: "${gradle} test --tests com.axel.gatewaypoc.utils.GenerateDefaultPairKeysTest | grep '${keyType}' ", returnStdout: true)
-    def out2 = sh(script: "${gradle} test --tests com.axel.gatewaypoc.utils.GenerateDefaultPairKeysTest | grep -E 'AES|IV'", returnStdout: true)
-    println "Saída SEM SPLIT ${out2}"
-    def out3 = out2.trim().replaceAll("\\s+", " ")
-    println "replaceAll = ${out3}"
-    out3 = out3.split(" ")
-    println "Saída COM SPLIT ${out3}"
-    
-    def generatedKey = out.trim().split(" ")[1]
-    println "${keyType} = ${generatedKey}"
-    return generatedKey
+def testAndGetKey() {
+    def out = sh(script: "${gradle} test --tests com.axel.gatewaypoc.utils.GenerateDefaultPairKeysTest | grep -E 'AES|IV'", returnStdout: true)
+    out = out2.trim().replaceAll("\\s+", " ").split(" ")
+    println "SAÍDA TESTE ${out3}"
+    NEW_AES = out[1]
+    NEW_IV = out[3]
 }
