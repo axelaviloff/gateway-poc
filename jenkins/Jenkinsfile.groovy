@@ -46,10 +46,10 @@ pipeline {
 
 def testAndGetKey(String keyType) {
     def out = sh(script: "${gradle} test --tests com.axel.gatewaypoc.utils.GenerateDefaultPairKeysTest | grep '${keyType}' ", returnStdout: true)
-    def out2 = sh(script: "${gradle} test --tests com.axel.gatewaypoc.utils.GenerateDefaultPairKeysTest", returnStdout: true)
+    def out2 = sh(script: "${gradle} test --tests com.axel.gatewaypoc.utils.GenerateDefaultPairKeysTest | grep -E 'AES|IV'", returnStdout: true)
     println "Saída SEM SPLIT ${out2}"
-    def test = out2.trim().split(" ")
-    println "SAIDA SPLIT ${test}"
+    def out3 = out2.trim().split(" ")
+    println "Saída COM SPLIT ${out3}"
     
     def generatedKey = out.trim().split(" ")[1]
     println "${keyType} = ${generatedKey}"
