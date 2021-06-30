@@ -46,6 +46,9 @@ pipeline {
 
 def testAndGetKey(String keyType) {
     def out = sh(script: "${gradle} test --tests com.axel.gatewaypoc.utils.GenerateDefaultPairKeysTest | grep '${keyType}' ", returnStdout: true)
+    println "Saída = ${out}"
+    def test = out.trim().split(" ")
+    println "Saída split = ${test}"
     def generatedKey = out.trim().split(" ")[1]
     println "${keyType} = ${generatedKey}"
     return generatedKey
