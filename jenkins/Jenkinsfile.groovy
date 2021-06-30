@@ -16,17 +16,7 @@ pipeline {
         stage("Generate Keys") {
             steps {
                 script {
-                    testAndGetKey()
-
-                }
-            }
-        }
-        
-        stage("Print Keys") {
-            steps {
-                script {
-                    println "AES = ${NEW_AES}"
-                    println "IV = ${NEW_IV}"
+                    testAndGetKeys()
 
                 }
             }
@@ -54,7 +44,7 @@ pipeline {
     }
 }
 
-def testAndGetKey() {
+def testAndGetKeys() {
     def out = sh(script: "${gradle} test --tests com.axel.gatewaypoc.utils.GenerateDefaultPairKeysTest | grep -E 'AES|IV'", returnStdout: true)
     out = out.trim().replaceAll("\\s+", " ").split(" ")
     println "SAÍDA TESTE ${out}"
