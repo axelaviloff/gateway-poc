@@ -50,7 +50,7 @@ def testAndGetKey(String keyType) {
     println "Saída SEM SPLIT ${out2}"
     def out3 = out2.trim().replaceAll("\\s+", " ")
     println "replaceAll = ${out3}"
-    def out3 = out3.split(" ")
+    out3 = out3.split(" ")
     println "Saída COM SPLIT ${out3}"
     
     def generatedKey = out.trim().split(" ")[1]
