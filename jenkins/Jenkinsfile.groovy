@@ -12,14 +12,6 @@ pipeline {
     }
     
     stages {
-    	stage("Build") {
-    	     steps {
-    	     	script {
-    	     	    sh "${gradle} build"
-    	     	}
-    	     }
-    	
-    	}
     
         stage("Generate Keys") {
             steps {
